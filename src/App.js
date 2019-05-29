@@ -9,6 +9,7 @@ const getCookie = (cookieName) => {
 
 class App extends Component {
   state = {
+    name: getCookie('name') || '',
     clickCount: getCookie('count') || 0,
     usernameIsEditable: false,
   }
@@ -28,9 +29,18 @@ class App extends Component {
   }
 
   saveUsername = () => {
+    const newUser = (this.state.name);
+    document.cookie = `name=${newUser}`;
     this.setState({
       usernameIsEditable: false,
     });
+  }
+
+  handleNameChange = event => {
+    this.setState({
+        name: event.target.value
+    });
+    console.log(event.target.value);
   }
 
   render() {
@@ -38,8 +48,6 @@ class App extends Component {
       <div>
         <center>
           <h1>Click the Cookie!!</h1>
-          <p>
-            Username:
             {/* Username should go here */}
             {/* The next block of code is conditional rendering.
             Look at the documentation https://reactjs.org/docs/conditional-rendering.html
@@ -64,12 +72,15 @@ class App extends Component {
             */}
             {this.state.usernameIsEditable ?
               <div>
-              <input placeholder="name"/>
-              <button onClick={this.saveUsername}>Save Username</button>
+                <p>{this.state.name}</p>
+                <input placeholder="name" onChange={this.handleNameChange}/>
+                <button onClick={this.saveUsername}>Save Username</button>
               </div> :
+              <div>
+                <p>{this.state.name}</p>
               <button onClick={this.editUsername}>Edit Username</button>
+              </div>  
             }
-          </p>
           <p>{this.state.clickCount}</p>
           <span
             role="img"
