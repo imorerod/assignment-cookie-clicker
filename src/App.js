@@ -45,9 +45,10 @@ class App extends Component {
             Look at the documentation https://reactjs.org/docs/conditional-rendering.html
             if this is new to you. */}
             {/* 
-              This conditional rendering is using a `ternary` operator. It works like an if/else block.
-              The part at the front is being evaluated. The `?` starts the conditions. 
-              The first condition is what will be done if true.
+              This conditional rendering is using a `ternary` operator.
+              It works like an if/else block.
+              The part at the front is being evaluated. The `?` starts the
+              conditions. The first condition is what will be done if true.
               The `:` breaks into the else block.
               
               Rewritten as if/else:
@@ -62,7 +63,10 @@ class App extends Component {
 
             */}
             {this.state.usernameIsEditable ?
-              <button onClick={this.saveUsername}>Save Username</button> :
+              <div>
+              <input placeholder="name"/>
+              <button onClick={this.saveUsername}>Save Username</button>
+              </div> :
               <button onClick={this.editUsername}>Edit Username</button>
             }
           </p>
